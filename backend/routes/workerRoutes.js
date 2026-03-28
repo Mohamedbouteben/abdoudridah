@@ -1,6 +1,6 @@
 import express from "express"
 import User from "../models/UserSchema.js"
-import Worker from "../models/WorkerSchema.js"
+import Worker from '../models/Workerschema.js'
 import Supervisor from "../models/Supervisorschema.js"
 import auth from "../middlewares/auth.js"
 import upload from "../config/multerConfig.js"
