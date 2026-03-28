@@ -1,0 +1,297 @@
+/* ─── متغيرات الألوان ─────────────────────────────── */
+:root {
+  --bg-base: #0a0a0f;
+  --bg-card: #111118;
+  --accent: #f59e0b;
+  --accent-dim: rgba(245, 158, 11, 0.15);
+  --accent-glow: rgba(245, 158, 11, 0.35);
+  --text-primary: #f1f0ed;
+  --text-muted: #6b7280;
+  --border: rgba(255, 255, 255, 0.06);
+}
+
+/* ─── الصفحة الكاملة ─────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+  font-family: "Tajawal", "Cairo", sans-serif;
+}
+
+/* ─── خلفية الشبكة ───────────────────────────────── */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ─── توهجات الخلفية ─────────────────────────────── */
+.bgGlow1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  pointer-events: none;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+.bgGlow2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+  bottom: -150px;
+  left: -100px;
+  pointer-events: none;
+  animation: pulseGlow 8s ease-in-out infinite reverse;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+/* ─── زخارف هندسية ───────────────────────────────── */
+.decorTopRight {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 80px;
+  height: 80px;
+  border: 1.5px solid rgba(245, 158, 11, 0.2);
+  transform: rotate(45deg);
+  animation: rotateSlow 20s linear infinite;
+}
+
+.decorBottomLeft {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  width: 50px;
+  height: 50px;
+  border: 1.5px solid rgba(99, 102, 241, 0.2);
+  transform: rotate(45deg);
+  animation: rotateSlow 15s linear infinite reverse;
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── المحتوى الرئيسي ────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 40px 20px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── الشعار ─────────────────────────────────────── */
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.logoIcon {
+  width: 48px;
+  height: 48px;
+}
+
+.logoIcon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+}
+
+.logoText {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+
+/* ─── النصوص الرئيسية ────────────────────────────── */
+.heroText {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeInUp 0.7s ease 0.1s both;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.titleLine1 {
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.titleLine2 {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f1f0ed 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.7;
+  margin: 0 auto;
+}
+
+/* ─── الأزرار ────────────────────────────────────── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 320px;
+  animation: fadeInUp 0.7s ease 0.2s both;
+}
+
+.btnPrimary {
+  width: 100%;
+  padding: 16px 28px;
+  background: var(--accent);
+  color: #0a0a0f;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.btnPrimary svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+.btnPrimary:hover {
+  background: #fbbf24;
+  transform: translateY(-2px);
+  box-shadow: 0 0 45px var(--accent-glow);
+}
+
+.btnPrimary:hover svg {
+  transform: translateX(-4px);
+}
+
+.btnSecondary {
+  width: 100%;
+  padding: 15px 28px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.btnSecondary:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: var(--accent-dim);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ─── الإحصائيات ─────────────────────────────────── */
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 24px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.7s ease 0.3s both;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.statNumber {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.statDivider {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
+
+/* ─── موبايل ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  .stats {
+    gap: 20px;
+    padding: 20px 24px;
+  }
+
+
+
+}

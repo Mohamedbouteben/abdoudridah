@@ -1,0 +1,99 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 12px 12px;
+  background: linear-gradient(to top, #0a0a0f 60%, transparent);
+  direction: rtl;
+  font-family: "Tajawal", "Cairo", sans-serif;
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(17, 17, 24, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 8px 4px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(245, 158, 11, 0.04);
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+  min-width: 56px;
+  color: #4b5563;
+}
+
+.navItem:hover {
+  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.navItem.active {
+  color: #f59e0b;
+}
+
+.navIcon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.navItem.active .navIcon {
+  transform: translateY(-2px) scale(1.1);
+}
+
+.navLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.activeDot {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+  animation: dotPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.homeGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: radial-gradient(circle at center, rgba(245, 158, 11, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes dotPop {
+  from { transform: translateX(-50%) scale(0); }
+  to   { transform: translateX(-50%) scale(1); }
+}

@@ -1,0 +1,401 @@
+.container {
+  direction: rtl;
+  font-family: "Tajawal", "Cairo", sans-serif;
+  min-height: 100vh;
+  background: #0a0a0f;
+  padding: 24px 16px 100px;
+}
+
+.section { animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.greeting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.greetSub { font-size: 0.9rem; color: #6b7280; margin: 0 0 4px; }
+.greetName { font-size: 1.6rem; font-weight: 800; color: #f1f0ed; margin: 0; }
+
+.avatarBig {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(59,130,246,0.12);
+  border: 2px solid rgba(59,130,246,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; font-weight: 800; color: #3b82f6;
+}
+
+.statsRow {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-bottom: 28px;
+}
+
+.statCard {
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 14px 10px;
+  text-align: center; display: flex; flex-direction: column; gap: 4px;
+}
+
+.statNum { font-size: 1.5rem; font-weight: 800; }
+.statLbl { font-size: 0.68rem; color: #6b7280; line-height: 1.3; }
+
+.sectionHeader {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+.sectionHeader h3 { font-size: 1rem; font-weight: 700; color: #f1f0ed; margin: 0; }
+
+/* ─── Bar Chart ─── */
+.barChart {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 100px;
+  background: #111118;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 28px;
+}
+
+.barItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.barFill {
+  width: 100%;
+  background: linear-gradient(to top, #3b82f6, rgba(59,130,246,0.4));
+  border-radius: 4px;
+  transition: height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-height: 4px;
+}
+
+.barDay { font-size: 0.6rem; color: #6b7280; white-space: nowrap; }
+
+/* ─── فريق الصفحة الرئيسية ─── */
+.teamRow {
+  display: flex; align-items: center; gap: 12px;
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 12px 14px; margin-bottom: 8px;
+}
+
+.teamAvatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(59,130,246,0.12); color: #3b82f6;
+  font-weight: 800; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.teamInfo { flex: 1; }
+.teamName { font-size: 0.88rem; font-weight: 700; color: #f1f0ed; margin: 0 0 2px; }
+.teamSpec { font-size: 0.72rem; color: #6b7280; margin: 0; }
+
+.teamStatus {
+  font-size: 0.68rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+}
+.active { background: rgba(16,185,129,0.12); color: #10b981; border: 1px solid rgba(16,185,129,0.2); }
+.idle { background: rgba(107,114,128,0.12); color: #9ca3af; border: 1px solid rgba(107,114,128,0.2); }
+
+/* ─── صفحة الفريق ─── */
+.pageTitle { font-size: 1.4rem; font-weight: 800; color: #f1f0ed; margin: 0 0 20px; }
+
+.teamList { display: flex; flex-direction: column; gap: 10px; }
+
+.teamCard {
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.teamCardAvatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(59,130,246,0.12); color: #3b82f6;
+  font-weight: 800; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.teamCardInfo { flex: 1; }
+.teamCardRight { text-align: left; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.teamTasks { font-size: 0.72rem; color: #6b7280; margin: 0; }
+
+/* ─── التقارير ─── */
+.reportList { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+
+.reportCard {
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.reportIcon {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: #16161f; border: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+}
+
+.reportInfo { flex: 1; }
+.reportTitle { font-size: 0.88rem; font-weight: 700; color: #f1f0ed; margin: 0 0 3px; }
+.reportDate { font-size: 0.72rem; color: #6b7280; margin: 0; }
+
+.reportStatus {
+  font-size: 0.68rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 20px;
+}
+.approved { background: rgba(16,185,129,0.12); color: #10b981; border: 1px solid rgba(16,185,129,0.2); }
+.sent { background: rgba(59,130,246,0.12); color: #3b82f6; border: 1px solid rgba(59,130,246,0.2); }
+
+.newReportBtn {
+  width: 100%; padding: 14px;
+  background: rgba(59,130,246,0.1); border: 1px dashed rgba(59,130,246,0.3);
+  border-radius: 12px; color: #3b82f6;
+  font-size: 0.9rem; font-weight: 700; font-family: inherit;
+  cursor: pointer; transition: all 0.2s;
+}
+.newReportBtn:hover { background: rgba(59,130,246,0.15); }
+
+/* ─── الجدول ─── */
+.scheduleList { display: flex; flex-direction: column; gap: 12px; }
+
+.scheduleRow {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.scheduleDay { font-size: 0.82rem; font-weight: 700; color: #9ca3af; width: 56px; flex-shrink: 0; }
+
+.scheduleBar {
+  flex: 1; height: 8px;
+  background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;
+}
+
+.scheduleBarFill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, rgba(59,130,246,0.5));
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.scheduleCount { font-size: 0.78rem; color: #6b7280; width: 36px; text-align: left; }
+
+/* ─── الملف الشخصي ─── */
+.profileHeader { text-align: center; padding: 20px 0 24px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 20px; }
+
+.profileAvatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(59,130,246,0.12); border: 3px solid rgba(59,130,246,0.3);
+  color: #3b82f6; font-size: 1.8rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  box-shadow: 0 0 30px rgba(59,130,246,0.2);
+}
+
+.profileName { font-size: 1.3rem; font-weight: 800; color: #f1f0ed; margin: 0 0 4px; }
+.profileRole { font-size: 0.82rem; color: #6b7280; margin: 0; }
+
+.profileStats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+
+.pStat {
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 14px 8px; text-align: center;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.pStat span { font-size: 1.3rem; font-weight: 800; color: #3b82f6; }
+.pStat small { font-size: 0.68rem; color: #6b7280; }
+
+.profileMenu { display: flex; flex-direction: column; gap: 8px; }
+
+.menuItem {
+  width: 100%; padding: 14px 18px;
+  background: #111118; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; color: #f1f0ed;
+  font-size: 0.9rem; font-family: inherit; font-weight: 600;
+  cursor: pointer; text-align: right; transition: all 0.2s;
+}
+.menuItem:hover { background: #16161f; }
+.logout { color: #ef4444 !important; border-color: rgba(239,68,68,0.15) !important; }
+
+/* ─── بحث وإدارة الفريق ─── */
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-family: inherit;
+  direction: rtl;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.searchInput:focus { border-color: rgba(59,130,246,0.3); }
+.searchInput::placeholder { color: var(--text-muted); }
+
+.workerSearchCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.addBtn {
+  padding: 6px 14px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.25);
+  color: #3b82f6;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.addBtn:hover { background: rgba(59,130,246,0.18); }
+
+.removeBtn {
+  padding: 6px 14px;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  color: #ef4444;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.removeBtn:hover { background: rgba(239,68,68,0.15); }
+
+.inTeamBadge {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  background: rgba(16,185,129,0.1);
+  color: #10b981;
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* ─── فورم التقرير ─── */
+.reportForm {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reportInput {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-family: inherit;
+  direction: rtl;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.reportInput:focus { border-color: rgba(59,130,246,0.3); }
+
+.reportTextarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-family: inherit;
+  direction: rtl;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.reportTextarea:focus { border-color: rgba(59,130,246,0.3); }
+
+.sendBtn {
+  padding: 12px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.sendBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ─── رسائل الحالة ─── */
+.feedbackMsg {
+  font-size: 0.82rem;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+/* ─── بيانات المشرف ─── */
+.infoCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 4px 16px;
+  margin-bottom: 20px;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.infoRow:last-child { border-bottom: none; }
+.infoLabel { font-size: 0.75rem; color: var(--text-muted); flex-shrink: 0; }
+.infoValue { font-size: 0.82rem; color: var(--text-primary); text-align: left; }
+
+.loadingText { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 20px 0; }
+.emptyText { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding: 16px 0; opacity: 0.5; }

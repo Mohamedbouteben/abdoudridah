@@ -1,0 +1,6 @@
+.wrapper {
+  min-height: 100vh;
+  background: #0a0a0f;
+  position: relative;
+  overflow-x: hidden;
+}
