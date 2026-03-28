@@ -3,7 +3,7 @@ import User from "../models/UserSchema.js"
 import Worker from '../models/Workerschema.js'
 import Supervisor from "../models/Supervisorschema.js"
 import auth from "../middlewares/auth.js"
-import upload from "../config/multerConfig.js"
+import upload from "../config/Multerconfig.js"
 import fs from "fs"
 
 const workerrouter = express.Router()
