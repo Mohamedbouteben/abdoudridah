@@ -1,9 +1,9 @@
 import { useState } from "react"
 import styles from "./Home.module.css"
-import BottomNav from "../Bottomnav/Bottomnav"
-import WorkerHome from "../Workerhome/Workerhome"
-import SupervisorHome from "../SupervisorHome/SupervisorHome"
-import BossHome from "../BossHome/BossHome"
+import BottomNav from "../Bottomnav/Bottomnav.jsx"
+import WorkerHome from "../Workerhome/Workerhome.jsx"
+import SupervisorHome from "../SupervisorHome/SupervisorHome.jsx"
+import BossHome from "../BossHome/BossHome.jsx"
 
 function Home() {
   const role = localStorage.getItem("role") || "worker"
