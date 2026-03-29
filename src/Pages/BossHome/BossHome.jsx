@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styles from "./BossHome.module.css"
 
-const API = "http://localhost:5000"
-
+const API = import.meta.env.VITE_API_URL
 const monthlyRevenue = [
   { month: "أكتوبر", value: 82 },
   { month: "نوفمبر", value: 68 },
@@ -134,7 +133,7 @@ function BossHome({ activeTab }) {
             <div className={`${styles.kpiCard} ${styles.kpi_gold}`}>
               <span className={styles.kpiIcon}>👷</span>
               <span className={styles.kpiValue}>{workersLoading ? "..." : allWorkers.length}</span>
-              <span className={styles.kpiLabel}>إجمالي العمال</span>
+              <span className={styles.kpiLabel}>إجمالي الفنيين</span>
             </div>
             <div className={`${styles.kpiCard} ${styles.kpi_blue}`}>
               <span className={styles.kpiIcon}>🗂</span>
@@ -288,9 +287,9 @@ function BossHome({ activeTab }) {
       {/* ─── العمال ─── */}
       {activeTab === "workers" && (
         <div className={styles.section}>
-          <h2 className={styles.pageTitle}>العمال والمشرفون</h2>
+          <h2 className={styles.pageTitle}>الفنيون والمشرفون</h2>
 
-          <div className={styles.sectionHeader}><h3>العمال ({allWorkers.length})</h3></div>
+          <div className={styles.sectionHeader}><h3>الفنيون ({allWorkers.length})</h3></div>
           {workersLoading ? (
             <p className={styles.loadingText}>جاري التحميل...</p>
           ) : allWorkers.length === 0 ? (

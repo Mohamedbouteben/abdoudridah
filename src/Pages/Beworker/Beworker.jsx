@@ -73,12 +73,11 @@ function BeWorker() {
       formdata.append("supervisionarea", supervisionarea)
       if (photo) formdata.append("photo", photo)
 
-      const res = await axios.post(
-        "http://localhost:5000/api/workers/newworker",
-        formdata,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-
+   const res = await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/workers/newworker`,
+  formdata,
+  { headers: { Authorization: `Bearer ${token}` } }
+)
       localStorage.setItem("role", res.data.role)
       localStorage.setItem("workerStatus", res.data.workerStatus)
       alert(res.data.message)

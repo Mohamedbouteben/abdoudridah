@@ -12,8 +12,8 @@ function Profile() {
   useEffect(() => {
     const fetchprofile = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/workers/workerinfo", {
-          headers: { Authorization: `Bearer ${token}` }
+const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/workers/workerinfo`, {
+            headers: { Authorization: `Bearer ${token}` }
         })
         // الباك اند يرجع worker أو supervisor حسب الـ role
         setprofiledata(res.data.worker || res.data.supervisor)

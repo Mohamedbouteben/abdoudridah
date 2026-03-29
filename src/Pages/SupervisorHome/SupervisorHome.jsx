@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styles from "./SupervisorHome.module.css"
 
-const API = "http://localhost:5000"
-
+const API = import.meta.env.VITE_API_URL
 const weekSchedule = [
   { day: "السبت", count: 5, done: 5 },
   { day: "الأحد", count: 7, done: 6 },
@@ -240,7 +239,7 @@ return {
           {teamLoading ? (
             <p className={styles.loadingText}>جاري التحميل...</p>
           ) : myTeam.length === 0 ? (
-            <p className={styles.emptyText}>لم تضف أي عامل لفريقك بعد</p>
+            <p className={styles.emptyText}>لم تضف أي فني لفريقك بعد</p>
           ) : (
             myTeam.slice(0, 3).map(w => (
               <div key={w._id} className={styles.teamRow}>
@@ -289,7 +288,7 @@ return {
 
           {/* البحث عن عمال */}
           <div className={styles.sectionHeader} style={{ marginTop: "24px" }}>
-            <h3>البحث عن عمال</h3>
+            <h3>البحث عن فنيين</h3>
           </div>
           <input
             className={styles.searchInput}

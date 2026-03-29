@@ -24,7 +24,7 @@ function Welcome() {
               <circle cx="24" cy="24" r="5" fill="#f59e0b"/>
             </svg>
           </div>
-          <span className={styles.logoText}>Abdoudridah</span>
+          <span className={styles.logoText}>Vario</span>
         </div>
 
         {/* العنوان */}

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import styles from "./WorkerHome.module.css"
 
-const API = "http://localhost:5000"
-
+const API = import.meta.env.VITE_API_URL
 const todayTasks = [
   { id: 1, title: "صيانة مكيف", location: "حي النور، عمارة 5", time: "09:00", status: "done" },
   { id: 2, title: "تركيب لوحة كهربائية", location: "شارع الجمهورية", time: "11:30", status: "inprogress" },
