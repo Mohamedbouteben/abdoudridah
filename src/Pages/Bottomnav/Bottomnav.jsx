@@ -1,4 +1,4 @@
-import styles from "./BottomNav.module.css"
+import styles from "./Bottomnav.module.css"
 
 // أيقونات worker
 const workerTabs = [

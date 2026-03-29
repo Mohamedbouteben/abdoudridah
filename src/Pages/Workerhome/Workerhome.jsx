@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import styles from "./WorkerHome.module.css"
+import styles from "./Workerhome.module.css"
 
 const API = import.meta.env.VITE_API_URL
 const todayTasks = [

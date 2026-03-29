@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import styles from "./BeWorker.module.css"
+import styles from "./Beworker.module.css"
 
 const workertypes = [
   "فني حفر",
