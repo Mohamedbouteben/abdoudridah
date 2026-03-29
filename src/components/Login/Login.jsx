@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styles from "./Login.module.css"
+import toast from "react-hot-toast"
 
 function Login() {
   const navigate = useNavigate()
@@ -11,7 +12,7 @@ function Login() {
 
   const handlelogin = async () => {
     if (!email || !password) {
-      alert("يجب ملء جميع الحقول!")
+      toast.error("يجب ملء جميع الحقول!")
       return
     }
 
@@ -31,13 +32,12 @@ const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, 
       localStorage.setItem("name", name)
       localStorage.setItem("workerStatus", workerStatus)
 
-      alert("✅ تم تسجيل الدخول بنجاح!")
+      toast.success("✅ تم تسجيل الدخول بنجاح!")
               { role === "user" ? navigate("/beworker")  :  navigate("/home")}
-      window.location.reload()
 
     } catch (err) {
       console.log(err, "❌ خطأ أثناء تسجيل الدخول")
-      alert(err.response?.data?.message || "❌ حدث خطأ أثناء تسجيل الدخول")
+      toast.error(err.response?.data?.message || "❌ حدث خطأ أثناء تسجيل الدخول")
     }
   }
 

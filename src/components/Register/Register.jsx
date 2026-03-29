@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styles from "./Register.module.css"
+import toast from "react-hot-toast"
 
 function Register() {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ function Register() {
 
   const handleregister = async () => {
     if (!name || !email || !password) {
-      alert("يجب ملء جميع الحقول!")
+      toast.error("يجب ملء جميع الحقول!")
       return
     }
 
@@ -31,12 +32,12 @@ const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register
       localStorage.setItem("role", role)
       localStorage.setItem("name", username)
 
-      alert("✅ تم إنشاء الحساب بنجاح!")
+      toast.success("✅ تم إنشاء الحساب بنجاح!")
       navigate("/beworker")
 
     } catch (err) {
       console.log(err, "❌ خطأ أثناء إنشاء الحساب")
-      alert(err.response?.data?.message || "❌ حدث خطأ أثناء إنشاء الحساب")
+      toast.error(err.response?.data?.message || "❌ حدث خطأ أثناء إنشاء الحساب")
     }
   }
 
