@@ -102,7 +102,7 @@ function BeWorker() {
               <circle cx="24" cy="24" r="5" fill="#f59e0b"/>
             </svg>
           </div>
-          <span className={styles.cardLogoText}>Abdoudridah</span>
+          <span className={styles.cardLogoText}>Vario</span>
         </div>
 
         <h2 className={styles.title}>استمارة الانضمام</h2>

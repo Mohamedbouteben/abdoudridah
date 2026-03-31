@@ -31,7 +31,7 @@ function Welcome() {
         <div className={styles.heroText}>
           <h1 className={styles.title}>
             <span className={styles.titleLine1}>نظام إدارة</span>
-            <span className={styles.titleLine2}>الخدمات الداخلية</span>
+            <span className={styles.titleLine2}>الصيانة والمعدات</span>
           </h1>
           <p className={styles.subtitle}>
   المنصة الداخلية لإدارة الفنيين والمشرفين ومتابعة المهام اليومية
