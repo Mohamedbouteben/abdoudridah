@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styles from "./Beworker.module.css"
+import toast from "react-hot-toast"
 
 const workertypes = [
   "فني حفر",
@@ -49,15 +50,15 @@ function BeWorker() {
 
   const handlebeworker = async () => {
     if (!name || !familyname || !email || !adress || !phonenumber) {
-      alert("يجب ملء جميع الحقول قبل إرسال الطلب!")
+      toast.error("يجب ملء جميع الحقول قبل إرسال الطلب!")
       return
     }
     if (selectedrole === "worker" && !specialization) {
-      alert("يجب اختيار التخصص!")
+        toast.error("يجب اختيار التخصص!")
       return
     }
     if (selectedrole === "supervisor" && !supervisionarea) {
-      alert("يجب اختيار مجال الإشراف!")
+        toast.error("يجب اختيار مجال الإشراف!")
       return
     }
 
@@ -80,13 +81,12 @@ function BeWorker() {
 )
       localStorage.setItem("role", res.data.role)
       localStorage.setItem("workerStatus", res.data.workerStatus)
-      alert(res.data.message)
+      toast.success(res.data.message)
       navigate("/home")
-      window.location.reload()
 
     } catch (err) {
       console.log(err)
-      alert(err.response?.data?.message || "❌ حدث خطأ أثناء إرسال الطلب")
+        toast.error(err.response?.data?.message || "❌ حدث خطأ أثناء إرسال الطلب")
     }
   }
 
