@@ -24,6 +24,7 @@ function SupervisorHome({ activeTab }) {
   const [workersLoading, setWorkersLoading] = useState(true)
   const [teamLoading, setTeamLoading] = useState(true)
   const [teamMsg, setTeamMsg] = useState("")
+  const [innerTab, setInnerTab] = useState("reports")
 
   const [myReports, setMyReports] = useState([])
   const [reportsLoading, setReportsLoading] = useState(true)
@@ -36,7 +37,7 @@ function SupervisorHome({ activeTab }) {
   const [supervisorInfo, setSupervisorInfo] = useState(null)
   const [infoLoading, setInfoLoading] = useState(true)
 
-  // GET /api/workers/workers — كل عمال الشركة
+  // GET /api/workers/workers
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
@@ -51,7 +52,7 @@ function SupervisorHome({ activeTab }) {
     fetchWorkers()
   }, [])
 
-  // GET /api/workers/myteam — فريقي فقط
+  // GET /api/workers/myteam
   useEffect(() => {
     const fetchMyTeam = async () => {
       try {
@@ -68,7 +69,7 @@ function SupervisorHome({ activeTab }) {
     fetchMyTeam()
   }, [])
 
-  // GET /api/reports/myreports — تقاريري السابقة
+  // GET /api/reports/myreports
   useEffect(() => {
     const fetchReports = async () => {
       try {
@@ -85,7 +86,7 @@ function SupervisorHome({ activeTab }) {
     fetchReports()
   }, [])
 
-  // GET /api/workers/workerinfo — بيانات المشرف
+  // GET /api/workers/workerinfo
   useEffect(() => {
     const fetchSupervisorInfo = async () => {
       try {
@@ -102,7 +103,7 @@ function SupervisorHome({ activeTab }) {
     fetchSupervisorInfo()
   }, [])
 
-  // POST /api/workers/addtoteam — إضافة عامل للفريق
+  // POST /api/workers/addtoteam
   const handleAddToTeam = async (workerId) => {
     setTeamMsg("")
     try {
@@ -112,7 +113,6 @@ function SupervisorHome({ activeTab }) {
         { headers: { Authorization: `Bearer ${token}` } }
       )
       setTeamMsg(res.data.message)
-      // نعيد جلب الفريق بعد الإضافة
       const res2 = await axios.get(`${API}/api/workers/myteam`, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -122,13 +122,13 @@ function SupervisorHome({ activeTab }) {
     }
   }
 
-  // DELETE /api/workers/removefromteam — حذف عامل من الفريق
+  // DELETE /api/workers/removefromteam
   const handleRemoveFromTeam = async (workerId) => {
     setTeamMsg("")
     try {
       const res = await axios.delete(`${API}/api/workers/removefromteam`, {
         headers: { Authorization: `Bearer ${token}` },
-        data: { workerId }, // axios delete — الـ body يكون في data
+        data: { workerId },
       })
       setTeamMsg(res.data.message)
       setMyTeam((prev) => prev.filter((w) => w._id !== workerId))
@@ -137,7 +137,7 @@ function SupervisorHome({ activeTab }) {
     }
   }
 
-  // POST /api/reports/send — إرسال تقرير جديد
+  // POST /api/reports/send
   const handleSendReport = async () => {
     if (!reportTitle.trim() || !reportContent.trim()) {
       setReportMsg("❌ يجب ملء جميع الحقول")
@@ -163,7 +163,6 @@ function SupervisorHome({ activeTab }) {
     }
   }
 
-  // تسجيل الخروج
   function handleLogout() {
     localStorage.removeItem("token")
     localStorage.removeItem("role")
@@ -171,27 +170,30 @@ function SupervisorHome({ activeTab }) {
     localStorage.removeItem("workerStatus")
     navigate("/")
   }
-const workerserchinfo=allWorkers.map((w)=>{
- const fullnamewithspace= w.name+" "+w.familyname
-  const fullnamewithoutspace= w.name+w.familyname
-return {
-  fullnamewithspace,
-  fullnamewithoutspace,
-  specialization:w.specialization,
-  phonenumber:w.phonenumber,
-    adress:w.adress,
-  _id: w._id,
-  name: w.name,
-  familyname: w.familyname
-}})
+
+  const workerserchinfo = allWorkers.map((w) => {
+    const fullnamewithspace = w.name + " " + w.familyname
+    const fullnamewithoutspace = w.name + w.familyname
+    return {
+      fullnamewithspace,
+      fullnamewithoutspace,
+      specialization: w.specialization,
+      phonenumber: w.phonenumber,
+      adress: w.adress,
+      _id: w._id,
+      name: w.name,
+      familyname: w.familyname
+    }
+  })
 
   const filteredWorkers = workerserchinfo.filter((w) =>
     w.fullnamewithspace.toLowerCase().includes(searchText.toLowerCase()) ||
-      w.fullnamewithoutspace.toLowerCase().includes(searchText.toLowerCase()) ||
-      w.specialization.toLowerCase().includes(searchText.toLowerCase())
+    w.fullnamewithoutspace.toLowerCase().includes(searchText.toLowerCase()) ||
+    w.specialization.toLowerCase().includes(searchText.toLowerCase())
   )
 
   const myTeamIds = myTeam.map((w) => w._id)
+
   return (
     <div className={styles.container}>
 
@@ -221,7 +223,6 @@ return {
             </div>
           </div>
 
-          {/* أداء الأسبوع - ديكور */}
           <div className={styles.sectionHeader}><h3>أداء الأسبوع</h3></div>
           <div className={styles.barChart}>
             {weekSchedule.map((d) => (
@@ -234,7 +235,6 @@ return {
             ))}
           </div>
 
-          {/* ملخص الفريق */}
           <div className={styles.sectionHeader}><h3>فريقي</h3></div>
           {teamLoading ? (
             <p className={styles.loadingText}>جاري التحميل...</p>
@@ -262,7 +262,6 @@ return {
 
           {teamMsg && <p className={styles.feedbackMsg}>{teamMsg}</p>}
 
-          {/* فريقي الحالي */}
           <div className={styles.sectionHeader}><h3>فريقي الحالي ({myTeam.length})</h3></div>
           {teamLoading ? (
             <p className={styles.loadingText}>جاري التحميل...</p>
@@ -276,17 +275,13 @@ return {
                   <p className={styles.teamName}>{w.name} {w.familyname}</p>
                   <p className={styles.teamSpec}>{w.specialization}</p>
                 </div>
-                <button
-                  className={styles.removeBtn}
-                  onClick={() => handleRemoveFromTeam(w._id)}
-                >
+                <button className={styles.removeBtn} onClick={() => handleRemoveFromTeam(w._id)}>
                   حذف
                 </button>
               </div>
             ))
           )}
 
-          {/* البحث عن عمال */}
           <div className={styles.sectionHeader} style={{ marginTop: "24px" }}>
             <h3>البحث عن فنيين</h3>
           </div>
@@ -315,10 +310,7 @@ return {
                   {inTeam ? (
                     <span className={styles.inTeamBadge}>في فريقك</span>
                   ) : (
-                    <button
-                      className={styles.addBtn}
-                      onClick={() => handleAddToTeam(w._id)}
-                    >
+                    <button className={styles.addBtn} onClick={() => handleAddToTeam(w._id)}>
                       إضافة
                     </button>
                   )}
@@ -329,72 +321,113 @@ return {
         </div>
       )}
 
-      {/* ─── التقارير ─── */}
+      {/* ─── التقارير والتواصل ─── */}
       {activeTab === "reports" && (
         <div className={styles.section}>
-          <h2 className={styles.pageTitle}>التقارير</h2>
+          <h2 className={styles.pageTitle}>التواصل</h2>
 
-          {/* زر إنشاء تقرير جديد */}
-          <button
-            className={styles.newReportBtn}
-            onClick={() => setShowReportForm(!showReportForm)}
-          >
-            {showReportForm ? "إلغاء" : "+ إنشاء تقرير جديد"}
-          </button>
+          <div className={styles.innerNav}>
+            <button
+              className={`${styles.innerNavBtn} ${innerTab === "reports" ? styles.innerNavActive : ""}`}
+              onClick={() => setInnerTab("reports")}
+            >
+              التقارير
+            </button>
+            <button
+              className={`${styles.innerNavBtn} ${innerTab === "messages" ? styles.innerNavActive : ""}`}
+              onClick={() => setInnerTab("messages")}
+            >
+              الرسائل
+            </button>
+          </div>
 
-          {/* فورم التقرير */}
-          {showReportForm && (
-            <div className={styles.reportForm}>
-              <input
-                className={styles.reportInput}
-                type="text"
-                placeholder="عنوان التقرير"
-                value={reportTitle}
-                onChange={e => setReportTitle(e.target.value)}
-              />
-              <textarea
-                className={styles.reportTextarea}
-                placeholder="محتوى التقرير..."
-                rows={5}
-                value={reportContent}
-                onChange={e => setReportContent(e.target.value)}
-              />
-              {reportMsg && <p className={styles.feedbackMsg}>{reportMsg}</p>}
+          {/* ─── التقارير ─── */}
+          {innerTab === "reports" && (
+            <div>
               <button
-                className={styles.sendBtn}
-                onClick={handleSendReport}
-                disabled={sendingReport}
+                className={styles.newReportBtn}
+                onClick={() => setShowReportForm(!showReportForm)}
               >
-                {sendingReport ? "جاري الإرسال..." : "إرسال التقرير"}
+                {showReportForm ? "إلغاء" : "+ إنشاء تقرير جديد"}
               </button>
+
+              {showReportForm && (
+                <div className={styles.reportForm}>
+                  <input
+                    className={styles.reportInput}
+                    type="text"
+                    placeholder="عنوان التقرير"
+                    value={reportTitle}
+                    onChange={e => setReportTitle(e.target.value)}
+                  />
+                  <textarea
+                    className={styles.reportTextarea}
+                    placeholder="محتوى التقرير..."
+                    rows={5}
+                    value={reportContent}
+                    onChange={e => setReportContent(e.target.value)}
+                  />
+                  {reportMsg && <p className={styles.feedbackMsg}>{reportMsg}</p>}
+                  <button
+                    className={styles.sendBtn}
+                    onClick={handleSendReport}
+                    disabled={sendingReport}
+                  >
+                    {sendingReport ? "جاري الإرسال..." : "إرسال التقرير"}
+                  </button>
+                </div>
+              )}
+
+              {reportsLoading ? (
+                <p className={styles.loadingText}>جاري التحميل...</p>
+              ) : myReports.length === 0 ? (
+                <p className={styles.emptyText}>لم ترسل أي تقرير بعد</p>
+              ) : (
+                myReports.map(r => (
+                  <div key={r._id} className={styles.reportCard}>
+                    <div className={styles.reportIcon}>📄</div>
+                    <div className={styles.reportInfo}>
+                      <p className={styles.reportTitle}>{r.title}</p>
+                      <p className={styles.reportDate}>
+                        {new Date(r.createdAt).toLocaleDateString("ar-DZ")}
+                      </p>
+                    </div>
+                    <span className={`${styles.reportStatus} ${r.status === "read" ? styles.approved : styles.sent}`}>
+                      {r.status === "read" ? "مقروء" : "مرسل"}
+                    </span>
+                  </div>
+                ))
+              )}
             </div>
           )}
 
-          {/* قائمة التقارير */}
-          {reportsLoading ? (
-            <p className={styles.loadingText}>جاري التحميل...</p>
-          ) : myReports.length === 0 ? (
-            <p className={styles.emptyText}>لم ترسل أي تقرير بعد</p>
-          ) : (
-            myReports.map(r => (
-              <div key={r._id} className={styles.reportCard}>
-                <div className={styles.reportIcon}>📄</div>
-                <div className={styles.reportInfo}>
-                  <p className={styles.reportTitle}>{r.title}</p>
-                  <p className={styles.reportDate}>
-                    {new Date(r.createdAt).toLocaleDateString("ar-DZ")}
-                  </p>
+          {/* ─── الرسائل ديكور ─── */}
+          {innerTab === "messages" && (
+            <div>
+              {[
+                { name: "المدير العام", text: "تم مراجعة تقرير الأسبوع الماضي", time: "09:30", avatar: "م", unread: 2 },
+                { name: "الدعم الفني", text: "تم تحديث جدول الفريق لهذا الأسبوع", time: "أمس", avatar: "د", unread: 0 },
+                { name: "إدارة الموارد", text: "تذكير: اجتماع الغد الساعة 10:00", time: "أمس", avatar: "إ", unread: 1 },
+                { name: "المدير العام", text: "أحسنت على أداء الفريق هذا الشهر", time: "الاثنين", avatar: "م", unread: 0 },
+              ].map((m, i) => (
+                <div key={i} className={styles.msgCard}>
+                  <div className={styles.msgAvatar}>{m.avatar}</div>
+                  <div className={styles.msgBody}>
+                    <div className={styles.msgTop}>
+                      <span className={styles.msgSender}>{m.name}</span>
+                      <span className={styles.msgTime}>{m.time}</span>
+                    </div>
+                    <p className={styles.msgText}>{m.text}</p>
+                  </div>
+                  {m.unread > 0 && <span className={styles.unreadBadge}>{m.unread}</span>}
                 </div>
-                <span className={`${styles.reportStatus} ${r.status === "read" ? styles.approved : styles.sent}`}>
-                  {r.status === "read" ? "مقروء" : "مرسل"}
-                </span>
-              </div>
-            ))
+              ))}
+            </div>
           )}
         </div>
       )}
 
-      {/* ─── الجدول - ديكور ─── */}
+      {/* ─── الجدول ─── */}
       {activeTab === "schedule" && (
         <div className={styles.section}>
           <h2 className={styles.pageTitle}>جدول الأسبوع</h2>
@@ -460,6 +493,16 @@ return {
           <div className={styles.profileMenu}>
             <button className={styles.menuItem}>تعديل الملف الشخصي</button>
             <button className={styles.menuItem}>الإعدادات</button>
+            <button className={styles.menuItem}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ marginLeft: "8px", verticalAlign: "middle" }}>
+                <path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2"/>
+                <rect x="7" y="7" width="4" height="4" rx="1"/>
+                <rect x="13" y="7" width="4" height="4" rx="1"/>
+                <rect x="7" y="13" width="4" height="4" rx="1"/>
+                <path d="M13 13h1M17 13v1M13 17h4v-3"/>
+              </svg>
+              مسح QR
+            </button>
             <button onClick={handleLogout} className={`${styles.menuItem} ${styles.logout}`}>
               تسجيل الخروج
             </button>

@@ -8,8 +8,6 @@ import BossHome from "../BossHome/BossHome.jsx"
 function Home() {
   const role = localStorage.getItem("role") || "worker"
 
-
-
   const [activeTab, setActiveTab] = useState("home")
 
   return (
@@ -22,13 +20,13 @@ function Home() {
       {role === "supervisor" && (
         <SupervisorHome activeTab={activeTab} />
       )}
-      {role === "boss" && (
+      {(role === "boss" || role === "admin") && (
         <BossHome activeTab={activeTab} />
       )}
 
       {/* ─── الـ BottomNav ─── */}
       <BottomNav
-        role={role}
+        role={role === "admin" ? "boss" : role}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />

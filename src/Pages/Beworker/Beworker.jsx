@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import styles from "./Beworker.module.css"
 import toast from "react-hot-toast"
@@ -16,14 +16,15 @@ const workertypes = [
 ]
 
 const supervisiontypes = [
-  "مشرف على فريق الحفر",
-  "مشرف على الصيانة",
-  "مشرف على الإنتاج",
-  "مشرف على السلامة والبيئة",
-  "مشرف على المستودعات",
-  "مشرف على الجودة"
+  "مشرف حفر",
+  "مشرف صيانة ميكانيكية",
+  "مشرف كهرباء وأتمتة",
+  "مشرف أنابيب ومعالجة",
+  "مشرف مختبر وتحاليل",
+  "مشرف سلامة وبيئة",
+  "مشرف لحام وتشكيل",
+  "مشرف تبريد وتكييف"
 ]
-
 function BeWorker() {
   const navigate = useNavigate()
 
@@ -40,6 +41,14 @@ function BeWorker() {
 
   const token = localStorage.getItem("token")
 
+  // إذا المستخدم بالفعل worker أو supervisor يرجع للـ home
+  useEffect(() => {
+    const role = localStorage.getItem("role")
+    if (role && role !== "user") {
+      navigate("/home")
+    }
+  }, [])
+
   const handlephotochange = (e) => {
     const file = e.target.files[0]
     if (file) {
@@ -54,11 +63,11 @@ function BeWorker() {
       return
     }
     if (selectedrole === "worker" && !specialization) {
-        toast.error("يجب اختيار التخصص!")
+      toast.error("يجب اختيار التخصص!")
       return
     }
     if (selectedrole === "supervisor" && !supervisionarea) {
-        toast.error("يجب اختيار مجال الإشراف!")
+      toast.error("يجب اختيار مجال الإشراف!")
       return
     }
 
@@ -74,11 +83,11 @@ function BeWorker() {
       formdata.append("supervisionarea", supervisionarea)
       if (photo) formdata.append("photo", photo)
 
-   const res = await axios.post(
-  `${import.meta.env.VITE_API_URL}/api/workers/newworker`,
-  formdata,
-  { headers: { Authorization: `Bearer ${token}` } }
-)
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/workers/newworker`,
+        formdata,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
       localStorage.setItem("role", res.data.role)
       localStorage.setItem("workerStatus", res.data.workerStatus)
       toast.success(res.data.message)
@@ -86,7 +95,7 @@ function BeWorker() {
 
     } catch (err) {
       console.log(err)
-        toast.error(err.response?.data?.message || "❌ حدث خطأ أثناء إرسال الطلب")
+      toast.error(err.response?.data?.message || "❌ حدث خطأ أثناء إرسال الطلب")
     }
   }
 

@@ -251,36 +251,28 @@ function BossHome({ activeTab }) {
           )}
 
           {/* ─── الرسائل ديكور ─── */}
-          {innerTab === "messages" && (
-            <div>
-              <div className={styles.msgForm}>
-                <input
-                  className={styles.msgInput}
-                  type="text"
-                  placeholder="اكتب رسالتك..."
-                />
-                <button className={styles.msgSendBtn}>إرسال</button>
-              </div>
-
-              {[
-                { name: "أحمد المشرف", text: "تم إنهاء مهام المنطقة الشمالية", time: "09:15", avatar: "أ" },
-                { name: "سامي الفني", text: "هل يمكن تأجيل مهمة الغد؟", time: "أمس", avatar: "س" },
-                { name: "كريم المشرف", text: "التقرير الأسبوعي جاهز للمراجعة", time: "أمس", avatar: "ك" },
-                { name: "يوسف الفني", text: "وصلت للموقع وبدأت العمل", time: "الاثنين", avatar: "ي" },
-              ].map((m, i) => (
-                <div key={i} className={styles.msgCard}>
-                  <div className={styles.msgAvatar}>{m.avatar}</div>
-                  <div className={styles.msgBody}>
-                    <div className={styles.msgTop}>
-                      <span className={styles.msgSender}>{m.name}</span>
-                      <span className={styles.msgTime}>{m.time}</span>
-                    </div>
-                    <p className={styles.msgText}>{m.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+         {innerTab === "messages" && (
+  <div>
+    {[
+      { name: "أحمد المشرف", text: "تم إنهاء مهام المنطقة الشمالية", time: "09:15", avatar: "أ", unread: 3 },
+      { name: "سامي الفني", text: "هل يمكن تأجيل مهمة الغد؟", time: "أمس", avatar: "س", unread: 1 },
+      { name: "كريم المشرف", text: "التقرير الأسبوعي جاهز للمراجعة", time: "أمس", avatar: "ك", unread: 0 },
+      { name: "يوسف الفني", text: "وصلت للموقع وبدأت العمل", time: "الاثنين", avatar: "ي", unread: 0 },
+    ].map((m, i) => (
+      <div key={i} className={styles.msgCard}>
+        <div className={styles.msgAvatar}>{m.avatar}</div>
+        <div className={styles.msgBody}>
+          <div className={styles.msgTop}>
+            <span className={styles.msgSender}>{m.name}</span>
+            <span className={styles.msgTime}>{m.time}</span>
+          </div>
+          <p className={styles.msgText}>{m.text}</p>
+        </div>
+        {m.unread > 0 && <span className={styles.unreadBadge}>{m.unread}</span>}
+      </div>
+    ))}
+  </div>
+)}
         </div>
       )}
 

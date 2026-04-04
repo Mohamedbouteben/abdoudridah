@@ -362,3 +362,14 @@
 /* ─── Loading / Empty ─── */
 .loadingText { text-align: center; color: #6b7280; font-size: 0.85rem; padding: 20px 0; }
 .emptyText { text-align: center; color: #374151; font-size: 0.82rem; padding: 16px 0; }
+
+.unreadBadge {
+  min-width: 20px; height: 20px;
+  background: #3b82f6;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}

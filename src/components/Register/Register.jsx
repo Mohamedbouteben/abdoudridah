@@ -18,8 +18,8 @@ function Register() {
     }
 
     try {
-const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, {
-          name,
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, {
+        name,
         email,
         password
       })
@@ -31,6 +31,7 @@ const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register
       localStorage.setItem("token", token)
       localStorage.setItem("role", role)
       localStorage.setItem("name", username)
+      localStorage.setItem("workerStatus", "pending")
 
       toast.success("✅ تم إنشاء الحساب بنجاح!")
       navigate("/beworker")
