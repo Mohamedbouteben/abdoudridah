@@ -27,14 +27,20 @@ function Register() {
       const token = res.data.token
       const role = res.data.role
       const username = res.data.name
+      const workerStatus = res.data.workerStatus
 
       localStorage.setItem("token", token)
       localStorage.setItem("role", role)
       localStorage.setItem("name", username)
-      localStorage.setItem("workerStatus", "pending")
+      localStorage.setItem("workerStatus", workerStatus)
 
       toast.success("✅ تم إنشاء الحساب بنجاح!")
-      navigate("/beworker")
+
+      if (role === "user") {
+        navigate("/beworker")
+      } else {
+        navigate("/home")
+      }
 
     } catch (err) {
       console.log(err, "❌ خطأ أثناء إنشاء الحساب")

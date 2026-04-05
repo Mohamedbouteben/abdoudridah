@@ -7,9 +7,10 @@ import BossHome from "../BossHome/BossHome.jsx"
 
 function Home() {
   const role = localStorage.getItem("role") || "worker"
-
+ console.log("role:", role)
+  console.log("all localStorage:", {...localStorage})
   const [activeTab, setActiveTab] = useState("home")
-
+ 
   return (
     <div className={styles.wrapper}>
 

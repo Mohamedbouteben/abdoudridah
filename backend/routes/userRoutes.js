@@ -30,7 +30,8 @@ userrouter.post("/register", async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: "user"       // بعد التسجيل مباشرة يصبح user
+      role: "user"     ,
+        workerStatus: user.workerStatus  // ✅ أضف هذا السطر
     })
 
     await user.save()
