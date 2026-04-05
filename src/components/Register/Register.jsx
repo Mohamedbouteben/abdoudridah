@@ -16,7 +16,7 @@ function Register() {
     }
 
     try {
-const res = await axios.post(`https://abdoudridah.onrender.com/api/users/register`, {
+const res = await axios.post(`https://abdoudridah-api.onrender.com/api/users/register`, {
 
         email,
         password
