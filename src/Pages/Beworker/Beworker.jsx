@@ -84,7 +84,7 @@ function BeWorker() {
       if (photo) formdata.append("photo", photo)
 
   const res = await axios.post(
-  `https://abdoudridah-api.onrender.com/api/workers/newworker`,
+  `https://abdoudridah.onrender.com/api/workers/newworker`,
   formdata,
   { headers: { Authorization: `Bearer ${token}` } }
 )
