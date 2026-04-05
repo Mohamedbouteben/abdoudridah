@@ -3,10 +3,8 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import styles from "./Register.module.css"
 import toast from "react-hot-toast"
-
 function Register() {
   const navigate = useNavigate()
-
   const [name, setname] = useState("")
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
@@ -18,8 +16,8 @@ function Register() {
     }
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, {
-        name,
+const res = await axios.post(`https://abdoudridah-api.onrender.com/api/users/register`, {
+
         email,
         password
       })
